@@ -18,13 +18,40 @@
        android:layout_height="wrap_content"
        android:hint="请输入手机号码"/>
 
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="16sp"/>
 
 
     <Button
+        android:layout_marginTop="16dp"
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="设置"/>
+
+
+        <Button
+            android:onClick="openIntercept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开启拦截服务" />
+
+        <Button
+            android:onClick="closeIntercept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="关闭拦截服务" />
+
+
+        <Button
+            android:onClick="getInterceptStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取服务状态" />
 
     </LinearLayout>
 
