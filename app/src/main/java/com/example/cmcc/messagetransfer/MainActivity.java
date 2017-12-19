@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cmcc.messagetransfer.mbinder.SmsBinder;
+import com.example.cmcc.messagetransfer.service.KeepAliveService;
 import com.example.cmcc.messagetransfer.service.SmsService;
 import com.example.cmcc.messagetransfer.utils.SpUtils;
 
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         initUI();
         checkAppPermission();
+        startAliveService();
+    }
+
+    private void startAliveService() {
+        startService(new Intent(MainActivity.this, KeepAliveService.class));
     }
 
     private void initView() {
@@ -91,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     bind();
                 }
 
-                testReadSMS();
+                //testReadSMS();
                 break;
         }
 
