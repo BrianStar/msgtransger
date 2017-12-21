@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 
 import com.example.cmcc.messagetransfer.KeepAliveManager;
 import com.example.cmcc.messagetransfer.receiver.KeepAliveReceiver;
+import com.example.cmcc.messagetransfer.receiver.TransmitReceiver;
 
 /**
  * Created by ADBrian on 19/12/2017.
@@ -16,8 +17,11 @@ import com.example.cmcc.messagetransfer.receiver.KeepAliveReceiver;
 public class KeepAliveService extends Service {
 
     public static KeepAliveService keepAliveService;
+    public static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+
 
     private KeepAliveReceiver mScreenReceiver = new KeepAliveReceiver();
+    private TransmitReceiver  mSMSReceiver = new TransmitReceiver();
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -29,7 +33,19 @@ public class KeepAliveService extends Service {
         super.onCreate();
         keepAliveService = this;
         startScreenBroadcastReceiver();
+        startSMSBroadcastReceiver();
     }
+
+    private void startSMSBroadcastReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(SMS_RECEIVED_ACTION);
+        filter.setPriority(999);
+        registerReceiver(mSMSReceiver, filter);
+    }
+    public void stopSMSBroadcastReceiver() {
+        unregisterReceiver(mSMSReceiver);
+    }
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -59,6 +75,7 @@ public class KeepAliveService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stopScreenStateUpdate();
+        stopSMSBroadcastReceiver();
     }
 
     public static class InnerService extends Service{

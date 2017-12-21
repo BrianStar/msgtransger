@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnStart.setOnClickListener(this);
 
         initView();
-        initUI();
+        //initUI();
         checkAppPermission();
         startAliveService();
     }
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         unbind();
                     }
                 } else {
+                    SpUtils.putKeyValue(MainActivity.this, "phone", "");
                     bind();
                 }
 
@@ -160,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindService(connection);
+        //unbindService(connection);
     }
 
     public void openIntercept(View view) {

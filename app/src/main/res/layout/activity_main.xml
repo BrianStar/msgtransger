@@ -38,20 +38,23 @@
             android:onClick="openIntercept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="开启拦截服务" />
+            android:text="开启拦截服务"
+            android:visibility="gone"/>
 
         <Button
             android:onClick="closeIntercept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="关闭拦截服务" />
+            android:text="关闭拦截服务"
+            android:visibility="gone"/>
 
 
         <Button
             android:onClick="getInterceptStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="获取服务状态" />
+            android:text="获取服务状态"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
